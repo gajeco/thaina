@@ -16,4 +16,4 @@ node_modules/
 *.tmp
 
 # Fotos de casos entram versionadas de proposito, junto do consentimento.
-# Nao adicionar aqui nada em assets/ ou img/.
+# Nao adicionar aqui nada em assets/.

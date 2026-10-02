@@ -47,16 +47,16 @@ Escala de cinzas sempre morna. Nota: **não existem** `--paper`, `--ink-3` nem `
 
 | # | id | Seção | Altura (1440px) | Job |
 |---|---|---|---|---|
-| 0 | `topbar` | Barra fixa | 72px | Marca, navegação, CTA sempre visível |
-| 1 | `hero` | Hero | 1158px | Promessa + foto real + seletor de cidade acima da dobra |
-| 2 | `filosofia` | A filosofia | 1595px | Anti-“cara de fazer procedimento” + 4 pilares + **banda de formação** + callout |
-| 3 | `procedimentos` | Procedimentos | 1577px | 5 cards com CTA individual |
-| 4 | `galeria` | Casos e ângulos | 959px | **6 cards** com espaço de imagem reservado (4:5) para cada slot |
-| 5 | `sobre` | A profissional | 991px | Foto 3:4 real, formação, credenciais |
-| 6 | `como-funciona` | Três passos | 688px | Jornada, ritmo deliberadamente compacto |
+| 0 | `topbar` | Barra fixa | 73px | Marca, navegação, CTA sempre visível |
+| 1 | `hero` | Hero | 1124px | Promessa + foto real + seletor de cidade acima da dobra |
+| 2 | `filosofia` | A filosofia | 1627px | Anti-“cara de fazer procedimento” + 4 pilares + **banda de formação** + callout |
+| 3 | `procedimentos` | Procedimentos | 1553px | 5 cards com CTA individual |
+| 4 | `galeria` | Casos e ângulos | 1990px | **6 cards** com moldura de foto reservada 4:5 (`data-slot` por caso) |
+| 5 | `sobre` | A profissional | 1086px | Foto 3:4 real, formação, credenciais |
+| 6 | `como-funciona` | Três passos | 766px | Jornada, ritmo deliberadamente compacto |
 | 7 | `duvidas` | Dúvidas frequentes | 826px | 6 `<details>` + saída de escape |
-| 8 | `agendar` | CTA final | 839px | Fechamento segmentado por cidade |
-| 9 | `.foot` | Rodapé grafite | 492px | Âncoras, sigilo, legal |
+| 8 | `agendar` | CTA final | 811px | Fechamento segmentado por cidade |
+| 9 | `.foot` | Rodapé grafite | 656px | Âncoras, horários, sigilo, legal |
 
 Total **9197px** no desktop. Mobile (390px) ≈ 13036px.
 Hierarquia: 1 H1, 7 H2, 15 H3, 2 H4.
@@ -143,29 +143,38 @@ O card 01 usa `.card--lead` — largura dobrada na mesma linha dos demais.
 
 ### 4.4 Casos e ângulos
 
-Seção com **6 cards** (`.gal__grid` / `.gcard`), um por slot. Descrições reaproveitadas dos cards de Procedimentos, para não haver copy nova circulando sem revisão.
+Seção com **6 cards** (`<ol class="gal__grid">` / `li.gcard`), um por ângulo. Cada card tem a **moldura da foto reservada** em `.gcard__media` (`aspect-ratio:4/5`, moldura tracejada bronze, glifo de câmera ao centro) e o corpo com número, título, tagline e descrição — descrições reaproveitadas dos cards de Procedimentos, sem copy nova sem revisão. A moldura está vazia de propósito: a altura existe antes da foto, então publicar a imagem depois não move nada.
 
 - Eyebrow: Casos e ângulos
 - H2: **Naturalidade é o critério, não a exceção**
 - Lead: Cada rosto é uma biometria única. Por isso, casos reais só entram aqui com autorização expressa da paciente — sem edição de cor ou forma e sem comparação de antes e depois.
 
-| # | Título | Tagline | Descrição | Slot de imagem |
+| # | Título | Tagline | Descrição | `data-slot` |
 |---|---|---|---|---|
-| 01 | Perfiloplastia | O equilíbrio que faltava entre nariz, lábios e queixo. | Avaliamos o perfil como um todo. Quando um traço desequilibra todos os outros, harmonizar o conjunto devolve a proporção natural — sem que ninguém identifique o que mudou. | `caso-perfil.jpg` |
-| 02 | Preenchimento labial | Contorno respeitado, zero efeito “bico de pato”. | O erro mais comum não é o volume: é o contorno. Preservamos a transição entre lábio e sorriso — a diferença está em quem olha. | `caso-labial.jpg` |
-| 03 | Toxina botulínica | Expressão livre, rosto que continua sendo o seu. | Suaviza o ruído sem apagar a sua cara — mantendo a capacidade de se expressar, sorrir e se surpreender. | `caso-terco-medio.jpg` |
-| 04 | Bioestimuladores | A sua própria produção, reativada devagar. | Para quem perdeu firmeza e quer recuperar estrutura sem alterar a identidade. O resultado aparece de forma progressiva e natural. | `caso-frontal.jpg` |
-| 05 | Anatomia facial | Cada medida lida antes de qualquer decisão. | Nariz, lábios e queixo são avaliados em conjunto, nunca como peças isoladas. É essa leitura completa que define o plano e a ordem das etapas. | `caso-mandibula.jpg` |
-| 06 | Harmonização facial e corporal | Um plano desenhado para um rosto só — o seu. | A harmonização não é um produto: é a soma de decisões. Face e corpo são tratados em conjunto quando se completam. | `caso-panorama.jpg` |
+| 01 | Perfiloplastia | O equilíbrio que faltava entre nariz, lábios e queixo. | Avaliamos o perfil como um todo. Quando um traço desequilibra todos os outros, harmonizar o conjunto devolve a proporção natural — sem que ninguém identifique o que mudou. | `perfil` |
+| 02 | Preenchimento labial | Contorno respeitado, zero efeito “bico de pato”. | O erro mais comum não é o volume: é o contorno. Preservamos a transição entre lábio e sorriso — a diferença está em quem olha. | `labial` |
+| 03 | Toxina botulínica | Expressão livre, rosto que continua sendo o seu. | Suaviza o ruído sem apagar a sua cara — mantendo a capacidade de se expressar, sorrir e se surpreender. | `terco-medio` |
+| 04 | Bioestimuladores | A sua própria produção, reativada devagar. | Para quem perdeu firmeza e quer recuperar estrutura sem alterar a identidade. O resultado aparece de forma progressiva e natural. | `frontal` |
+| 05 | Anatomia facial | Cada medida lida antes de qualquer decisão. | Nariz, lábios e queixo são avaliados em conjunto, nunca como peças isoladas. É essa leitura completa que define o plano e a ordem das etapas. | `mandibula` |
+| 06 | Harmonização facial e corporal | Um plano desenhado para um rosto só — o seu. | A harmonização não é um produto: é a soma de decisões. Face e corpo são tratados em conjunto quando se completam. | `panorama` |
 
-**Publicar uma imagem depois — como fazer:** cada card já tem um `<div class="gcard__media">` reservado logo acima do texto, com a `<img>` comentada. Basta descomentar, apontar para `assets/caso-<slot>.jpg` (4:5) e apagar o comentário de instrução. Nada mais muda: nem o grid, nem a ordem, nem a altura dos cards vizinhos.
+**Como publicar a foto de um caso.** Colocar o arquivo em `assets/` com o nome do `data-slot` (`caso-perfil.jpg`, 4:5, ex. 900×1125) e colar dentro do `.gcard__media` correspondente:
 
-Por que funciona: `.gcard__media` tem `aspect-ratio:4/5` **sempre**, vazio ou não, e `object-fit:cover` no `img`. Como a altura do card já está prevista, inserir a foto não empurra o texto nem muda o alinhamento da linha. A versão anterior escondia a área com `:empty` e a expandia ao receber a imagem — o oposto do desejado. Estado vazio é um placeholder tracejado com ícone de câmera, para parecer proposital e não quebrado.
+```html
+<picture>
+  <source type="image/webp" srcset="assets/caso-perfil.webp">
+  <img src="assets/caso-perfil.jpg" alt="Descrição real da imagem"
+       width="900" height="1125" loading="lazy" decoding="async">
+</picture>
+```
 
-⚠️ `:empty` **não** casa quando o div tem quebra de linha ou espaço dentro. Comentários são ignorados, whitespace não. Como aqui o bloco é sempre visível, isso deixou de ser relevante — mas não usar `:empty` para ocultar por whitespace em outro lugar.
+Nada mais muda — nem CSS, nem grid, nem ordem, nem altura dos vizinhos. `.gcard__media picture` e `.gcard__media img` já estão dimensionados (`width/height:100%` + `object-fit:cover`), então a foto cobre a moldura tracejada. Um `<img>` sozinho também serve. Não há `<img>` comentado, não há `onerror` e não há nada a descomentar.
 
-**Nota ética `.gal__note`** (abaixo dos cards, tracejado mais discreto)
-> Quando houver imagens publicadas aqui, elas terão autorização por escrito, sem edição de cor ou forma e sem comparação de antes e depois. Os resultados variam de pessoa para pessoa conforme resposta biológica, técnica utilizada e indicações individuais.
+**Prova de que não desloca.** Inserindo `<picture>` nos 6 cards por CDP: altura da seção, altura da página, altura de cada card, offset do `.gcard__body` e posição dos 6 `<h3>` ficam **idênticos** em 320px e 1440px. A imagem ocupa o quadro exato (ex.: 256×321 dentro de 258×323, 1px de borda de cada lado).
+
+⚠️ `:empty` **não** casa quando o div tem quebra de linha ou espaço dentro. Não usar `:empty` para ocultar por whitespace em outro lugar.
+
+**Nota ética: removida.** O card `.gal__note` ("Quando houver imagens publicadas aqui...") foi retirado a pedido da cliente, junto com o CSS dele. A seção termina no CTA. A regra de consentimento continua valendo na publicação das fotos, e o aviso legal do rodapé permanece — é o texto regulatório que segue na página.
 
 CTA da seção: `Quero conhecer os protocolos` (`data-wa="anatomia"`)
 
@@ -288,39 +297,48 @@ https://wa.me/557583527689?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20d
 
 ### Fotos publicadas
 
-| Arquivo | Origem em `img/` | Uso | Ratio | Export | Peso |
-|---|---|---|---|---|---|
-| `assets/dra-thaina-hero.jpg` | `1.jpg` | Hero | 4:5 | 1200×1500 | 241KB |
-| `assets/dra-thaina-consulta.jpg` | `3.jpg` | A profissional | 3:4 | 1125×1500 | 162KB |
-| `assets/dra-thaina-formacao.jpg` | `2.jpg` | Banda de formação | 4:5 | 900×1125 | 96KB |
+Todas as imagens da página vivem em `assets/`. Não existe outra pasta de imagens no projeto.
 
-O mapeamento foi confirmado por comparação de pixels: cada original foi reprocessado com o mesmo `centering` e comparado com o export publicado. A diferença média de luminância ficou em 0.03–0.10 para o par correto e 66–98 para os pares errados, então a associação acima não é suposição.
+| Arquivo | Uso | Ratio | Export | Peso |
+|---|---|---|---|---|
+| `assets/dra-thaina-hero.jpg` | Hero (fallback) | 4:5 | 1200×1500 | 241KB |
+| `assets/dra-thaina-hero.webp` | Hero (WebP full) | 4:5 | 1200×1500 | 106KB |
+| `assets/dra-thaina-hero-800.webp` | Hero (WebP compacto) | 4:5 | 800×1000 | 60KB |
+| `assets/dra-thaina-consulta.jpg` | A profissional (fallback) | 3:4 | 1125×1500 | 162KB |
+| `assets/dra-thaina-consulta.webp` | A profissional (WebP full) | 3:4 | 1125×1500 | 63KB |
+| `assets/dra-thaina-consulta-750.webp` | A profissional (WebP compacto) | 3:4 | 750×1000 | 37KB |
+| `assets/dra-thaina-formacao.jpg` | Banda de formação (fallback) | 4:5 | 900×1125 | 96KB |
+| `assets/dra-thaina-formacao.webp` | Banda de formação (WebP full) | 4:5 | 900×1125 | 35KB |
+| `assets/dra-thaina-formacao-600.webp` | Banda de formação (WebP compacto) | 4:5 | 600×750 | 21KB |
+| `assets/og-preview.jpg` | `og:image` / `twitter:image` | 1200×630 | 1200×630 | 116KB |
 
-⚠️ A pasta `img/` é o **único backup dos originais em resolução cheia** — os exports em `assets/` já têm corte aplicado e não dá para recuperar o enquadramento completo. Manter versionada junto com o site.
+⚠️ Os arquivos em `assets/` são o **único** material das fotos: já vêm com o corte aplicado e não há mais os originais em resolução cheia. Para trocar qualquer foto, substituir o arquivo pelo mesmo nome mantendo o ratio indicado acima — e revisar o enquadramento no hero, que é o único ponto sensível.
 
 Gerados com Pillow `ImageOps.fit`/LANCZOS, `quality=82`, `optimize+progressive`, `subsampling=0` (4:4:4, preserva tom de pele), sem EXIF.
 
-Crops aplicados (fontes próximas do ratio alvo, perda pequena):
+O `centering` do hero foi enviesado para cima de propósito: a foto é de corpo inteiro em pé, então o corte remove os pés e mantém o rosto na primeira dobra. Se o rosto ainda ficar pequeno demais no hero, refazer o corte com `centering=(0.5, 0.15)` ou recortar o busto.
 
-| Origem | Ratio | Alvo | Corte |
-|---|---|---|---|
-| `1.jpg` 1170×1463 | 0.800 | 4:5 | −3% de altura, `centering=(0.5, 0.30)` |
-| `3.jpg` 1098×1372 | 0.800 | 3:4 | −2% de altura, `centering=(0.5, 0.50)` |
-| `2.jpg` 978×1304 | 0.750 | 4:5 | −8% de altura, `centering=(0.5, 0.40)` |
+### Entrega em `<picture>`
 
-O `centering` do hero é enviesado para cima de propósito: a foto é de corpo inteiro em pé, então o corte remove os pés e mantém o rosto na primeira dobra. Se o rosto ainda ficar pequeno demais no hero, subir para `(0.5, 0.15)` ou recortar o busto.
+Cada foto principal é um `<picture>` com dois `<source>` (WebP full e compacto) e o JPEG no `<img>`, sempre com `width`/`height` e `loading`/`decoding` explícitos. O `sizes` precisa refletir a largura real renderizada, senão o navegador baixa o arquivo grande à toa:
 
-`img/` fica intacto como backup dos originais, em resolução cheia (1170×1463, 978×1304, 1098×1372).
+| Papel | `sizes` | `<img>` |
+|---|---|---|
+| Hero | `(min-width:980px) 46vw, 100vw` | `fetchpriority="high"`, sem `loading` |
+| Consulta | `42vw` | `loading="lazy"` |
+| Formação | `34vw` | `loading="lazy"` |
 
-### Slots disponíveis para casos reais
+O hero tem `<link rel="preload" as="image" type="image/webp" imagesrcset=... imagesizes=...>` no `<head>`, com **os mesmos** `srcset`/`sizes` do `<picture>` — preload divergente baixa a imagem duas vezes. Consulta e formação não têm preload: são abaixo da dobra.
 
-`assets/caso-{perfil,labial,terco-medio,frontal,mandibula,panorama}.jpg` — 4:5, sem uso no momento. Só publicar com autorização por escrito.
+Os `.ph` mantêm `aspect-ratio` fixo e `img{width:100%;height:100%;object-fit:cover}`, então trocar o arquivo não muda a altura e o CLS segue em 0. Não usar `onerror` aqui: o `<picture>` já tem fallback no próprio navegador.
 
-Sem arquivo no lugar, `onerror="this.remove()"` exibe o fallback `.ph__fb` automaticamente — a página nunca quebra.
+### Slots para fotos de casos reais
+
+Os 6 slots existem na página e estão versionados com um `data-slot` cada: `perfil`, `labial`, `terco-medio`, `frontal`, `mandibula`, `panorama` (`.gcard__media`). Ao liberar uma foto, salvar em `assets/caso-<slug>.jpg` (4:5) e colar o `<picture>` dentro do `.gcard__media` do slot — WebP + JPEG, `width`/`height` explícitos, `loading="lazy"` e `alt` real. Só com autorização por escrito. Receita completa na seção 4.4 e no `README.md`.
 
 ### Referência de nomes
 
-Os originais em `img/` estavam com os nomes-coluna do Instagram, contendo acentos e um `✨` (U+2728). Isso quebra em alguns hosts e em URLs. Os arquivos exportados usam nomes ASCII em minúsculas com hífen. Manter essa convenção.
+Os arquivos em `assets/` usam nomes ASCII em minúsculas com hífen. Manter essa convenção: acentos e `✨` (U+2728) quebram em alguns hosts e em URLs.
 
 ### Ícone e PWA
 
@@ -344,7 +362,7 @@ Armadilhas que já custaram tempo aqui:
 - **`start_url` e `scope` com `./`** apontam para `/assets/`, não para a raiz do site.
 - **Valide por HTTP real, nunca por `file://`.** Em `file://` o `fetch` é bloqueado por CORS e falha em todos os recursos, gerando falso negativo em cascata.
 
-No `<head>`: `viewport-fit=cover`, `theme-color` para esquema claro e escuro, `apple-mobile-web-app-status-bar-style`, `link[rel=icon]` apontando para SVG e PNG, `link[rel=apple-touch-icon]`, `link[rel=manifest]`.
+No `<head>`: `viewport-fit=cover`, `theme-color` para esquema claro e escuro, `apple-mobile-web-app-status-bar-style`, `link[rel=icon]` apontando para SVG e PNG, `link[rel=apple-touch-icon]`, `link[rel=manifest]`, `canonical`, `robots`, Open Graph completo e Twitter Card — todos apontando para `https://drathainalima.com.br/assets/og-preview.jpg` (1200×630). Mais o `<link rel="preload" as="image" type="image/webp">` do hero.
 
 ---
 
@@ -359,25 +377,33 @@ No `<head>`: `viewport-fit=cover`, `theme-color` para esquema claro e escuro, `a
 ## 8. Checklist de publicação
 
 **Resolvido**
-- [x] Fotos do hero, A profissional e banda de formação exportadas em `assets/`
-- [x] Galeria com 6 cards e area de imagem reservada 4:5 em cada slot (pronta para fotos futuras, sem alterar layout)
+- [x] Fotos do hero, A profissional e banda de formação exportadas em `assets/`, com WebP responsivo (2 candidatos cada) + JPEG de fallback em `<picture>`
+- [x] `og-preview.jpg` 1200×630 gerado e ligado em `og:image` e `twitter:image`
+- [x] Preload do hero com `srcset`/`sizes` idênticos aos do `<picture>` (sem download duplicado)
+- [x] Galeria com 6 cards e moldura de foto 4:5 reservada em cada `data-slot` — publicar a foto depois não altera CSS, grid, ordem nem altura (medido)
 - [x] `figure{margin:0}` no reset — sem isso a banda perdia 80px de largura
 - [x] BOM UTF-8 removido do início do `index.html`
 - [x] Favicon + ícones de instalação + manifesto, todos resolvendo 200 por HTTP
-- [x] Contraste WCAG AA (≥4.5:1) em 174 textos × 8 viewports, sem falhas
-- [x] Sem overflow horizontal de 320px a 1440px
-- [x] Alvos de toque ≥44px e microtextos ≥10.2px no mobile
-- [x] Âncorasparam exatamente abaixo do topbar (delta 0) em desktop e mobile
-- [x] Furo de navegação em 780–1019px fechado — a nav estava com estilo mas `display:none`
-- [x] Botão flutuante não cobre mais a última linha do rodapé
+- [x] Contraste WCAG AA (≥4.5:1) auditado por cor composta real no Chrome, 227–232 textos × 6 viewports, sem falhas (pior caso 4.79:1)
+- [x] Sem overflow horizontal e CLS 0 de 320px a 1440px, incluindo 780–1019px
+- [x] Alvos de toque ≥44px em 320, 390, 779, 780, 860, 1019, 1024 e 1440px
+- [x] Âncoras param exatamente abaixo do topbar (delta 0) em desktop e mobile
+- [x] Furo de navegação em 780–1019px fechado — nav exibida, CTA com `flex:none` e links sem quebra de palavra
+- [x] `passouFinal` recalculado por frame: o botão flutuante reaparece ao subir, não trava ligado
+- [x] Botão flutuante não cobre a última linha do rodapé e fica oculto até 779px
+- [x] Scroll listener com `requestAnimationFrame` (antes: 1 handler por evento de scroll)
 - [x] Barra mobile medida em JS e publicada em `--mbar-h` (era 76px fixos,_media 87px)
+- [x] CSS morto removido (tokens, mixins e media queries sem regra efetiva)
+- [x] `rel="noopener noreferrer"` em todos os 22 links `target="_blank"`
 
 **Pendente**
-- [ ] Substituir `https://drathainalima.com.br/` pelo domínio real
+- [ ] Substituir `https://drathainalima.com.br/` pelo domínio real (`canonical`, `og:url`, JSON-LD e links de WhatsApp)
 - [ ] Conferir o enquadramento do rosto da foto do hero em 390px e 1440px
+- [ ] Conferir visualmente `og-preview.jpg` em WhatsApp, LinkedIn, Instagram e X
 - [ ] Conferir visualmente o favicon em 16px, aba escura e home screen do Android
 - [ ] Conferir se `apple-mobile-web-app-status-bar-style="black-translucent"` não atrapalha o topo em iPhone com notch
-- [ ] Consentimento por escrito de cada paciente **antes** de descomentar qualquer `<img>` em `.gcard__media`
+- [ ] Confirmar os horários atendidos com a profissional (publicado como segunda a sábado, 9h–19h)
+- [ ] Confirmar o texto regulatório exibido: `CRBM-BA (Habilitação em Biomedicina Estética)`
 - [ ] Validar com a profissional as faixas de duração e as alegações de segurança
 - [ ] Testar os 22 links com `?text=` em Android e iOS
 - [ ] Confirmar que `wa.me/557583527689` abre a conversa com o texto colado
@@ -400,6 +426,9 @@ d.execute_cdp_cmd("Emulation.setDeviceMetricsOverride",
 Erros que os testes ducked, e que voltam a aparecer se a checagem for frouxa:
 
 - **Contraste em fundo transparente.** Compor `rgba(255,255,255,.05)` sobre um gradiente escuro exige empilhar as camadas do ancestral mais externo para dentro. Compor sobre branco gera contraste falso de 1.12 em `.btn-light`, que passa na auditoria e reprova no olho.
+- **`getComputedStyle` não devolve gradiente.** `backgroundColor` vem `transparent` em `.btn-primary`, `.final` e `.gal`; sem uma tabela de fallback do tom mais claro/escuro de cada gradiente, a auditoria acusa 1.06:1 em texto que na tela tem 12:1.
+- **Preload com `srcset` divergente.** O `<link rel="preload">` precisa repetir exatamente o `srcset` e o `sizes` do `<picture>`. Um `sizes` diferente faz o navegador escolher candidatos em arquivos diferentes e baixar a imagem duas vezes.
+- **`min-width:auto` em flex item só respeita o min-content.** `white-space` normal deixa o link do nav quebrar no meio da palavra em 780–1019px e virar um alvo de 39×56px. `white-space:nowrap` + `flex:none` no CTA resolvem; medir o alvo depois, não confiar no `flex-shrink`.
 - **Media query no limite exato.** `min-width:1040px` testado em "1040px" pode cair fora da faixa se o `innerWidth` efetivo for outro. Confirmar `matchMedia(...).matches` no próprio navegador.
 - **Hover precisa de hover de verdade.** `ActionChains.move_to_element` reproduz o `:hover`; injetar uma classe de hover não reproduz o cascade e mascara bug de ordem de regra.
 - **Scroll suave.** `scrollTo` com `scroll-behavior:smooth` não chega ao fim antes de a medição; desativar temporariamente e rolar duas vezes antes de ler.
