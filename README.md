@@ -41,13 +41,3 @@ assets/
   dra-thaina-hero.jpg, dra-thaina-consulta.jpg, dra-thaina-formacao.jpg
 img/                  fotos originais preservadas (fonte dos exports acima)
 ```
-
-## Antes de publicar
-
-- [ ] Conferir o favicon em 16px, aba escura e home screen do Android
-- [ ] Conferir `apple-mobile-web-app-status-bar-style="black-translucent"` em iPhone com notch
-- [ ] Consentimento por escrito de cada paciente antes de descomentar qualquer `<img>`
-- [ ] Validar com a profissional as faixas de duração e as alegações de segurança
-- [ ] Testar os 22 links `wa.me` com `?text=` em Android e iOS
-- [ ] Confirmar que `wa.me/557583527689` abre a conversa com o texto colado
-- [ ] Substituir o domínio provisório `drathainalima.com.br` pelo definitivo
